@@ -4,6 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import RootLayout from "./components/RootLayout/RootLayout";
+import NotFound from "./pages/NotFound.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
+
 
 const App = () => {
   return (
@@ -11,6 +15,9 @@ const App = () => {
       <RootLayout>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </RootLayout>
     </BrowserRouter>
