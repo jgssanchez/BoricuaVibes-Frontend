@@ -14,9 +14,10 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
-import { Link} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 import { handleError } from "../../utils/handleInputError";
+import clientAxios from "../../utils/clientAxios";
 
 
 const strongPasswordRegex =
@@ -32,6 +33,7 @@ const confIcon = {
 };
 
 const RegisterForm = () => {
+  const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -40,6 +42,7 @@ const RegisterForm = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowConfirmPassword = () =>
@@ -52,6 +55,33 @@ const RegisterForm = () => {
       return setConfirmPasswordError(true);
     } else {
       setConfirmPasswordError(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+
+    if (password !== confirmPassword) setConfirmPasswordError(true);
+
+    if (emailError || passwordError || confirmPasswordError) {
+      setLoading(false);
+      return alert("Por favor, rellena bien el formulario");
+    }
+
+    try {
+      await clientAxios
+        .post(`/users/create`, { email, password })
+        .then((res) => alert(res.data.message));
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setTimeout(() => navigate("/"), 2000);
+    } catch (error) {
+      const errorMsg = error.errors?.[0]?.msg;
+      alert(errorMsg || "Ups, ocurrió un error");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -86,7 +116,7 @@ const RegisterForm = () => {
           <Box
             component="form"
             noValidate
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
