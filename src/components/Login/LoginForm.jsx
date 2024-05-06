@@ -10,9 +10,10 @@ import {
 import LoginIcon from "@mui/icons-material/Login";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { handleError } from "../../utils/handleInputError.js"
+import clientAxios from "../../utils/clientAxios.js";
 
 const confIcon = {
   position: "absolute",
@@ -25,8 +26,7 @@ const strongEmailRegex =
   /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
 const LoginForm = () => {
- 
-
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -34,10 +34,24 @@ const LoginForm = () => {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    if (!email || !password || emailError)
+      return alert(
+        "Por favor, rellena el formulario correctamente"
+      );
 
+    await clientAxios
+      .post(`/users/login-user`, { email, password })
+      .then(() => {
+        alert("Bienvenido");
+        navigate("/");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
 
 
   return (
@@ -69,7 +83,7 @@ const LoginForm = () => {
           </Typography>
           <Box
             component="form"
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             noValidate
             sx={{ mt: 1 }}
           >

@@ -14,16 +14,17 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { handleError } from "../../utils/handleInputError";
 import clientAxios from "../../utils/clientAxios";
-
 
 const strongPasswordRegex =
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 const strongEmailRegex =
   /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+const firstnameRegex = /^[a-zA-Z]{3,15}$/;
+const lastnameRegex = /^[a-zA-Z ]{2,30}$/;
 
 const confIcon = {
   position: "absolute",
@@ -33,7 +34,7 @@ const confIcon = {
 };
 
 const RegisterForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -43,6 +44,10 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [firstnameError, setFirstnameError] = useState(false);
+  const [lastnameError, setLastnameError] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleClickShowConfirmPassword = () =>
@@ -64,15 +69,17 @@ const RegisterForm = () => {
 
     if (password !== confirmPassword) setConfirmPasswordError(true);
 
-    if (emailError || passwordError || confirmPasswordError) {
+    if (firstnameError || lastnameError || emailError || passwordError || confirmPasswordError) {
       setLoading(false);
       return alert("Por favor, rellena bien el formulario");
     }
 
     try {
       await clientAxios
-        .post(`/users/create`, { email, password })
+        .post(`/users/create`, { firstname, lastname, email, password })
         .then((res) => alert(res.data.message));
+      setFirstname("")
+      setLastname("")
       setEmail("");
       setPassword("");
       setConfirmPassword("");
@@ -85,14 +92,13 @@ const RegisterForm = () => {
     }
   };
 
-
   return (
     <>
       <CssBaseline />
       <Container
         maxWidth="sm"
         sx={{
-          my: {xs: 12, sm: 2, md: 10},
+          my: { xs: 12, sm: 2, md: 10 },
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -120,6 +126,45 @@ const RegisterForm = () => {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="nombre"
+                  label="Nombre"
+                  name="nombre"
+                  autoComplete="nombre"
+                  onChange={(e) =>
+                    handleError(
+                      e,
+                      setFirstname,
+                      setFirstnameError,
+                      firstnameRegex
+                    )
+                  }
+                  value={firstname}
+                  error={firstnameError}
+                  color={firstnameError ? "" : "success"}
+                  helperText={firstnameError ? "Nombre inválido" : ""}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastname"
+                  label="Apellido"
+                  name="lastname"
+                  autoComplete="lastname"
+                  onChange={(e) =>
+                    handleError(e, setLastname, setLastnameError, lastnameRegex)
+                  }
+                  value={lastname}
+                  error={lastnameError}
+                  color={lastnameError ? "" : "success"}
+                  helperText={lastnameError ? "Apellido inválido" : ""}
+                />
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required

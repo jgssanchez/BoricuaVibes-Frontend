@@ -7,9 +7,18 @@ import RootLayout from "./components/RootLayout/RootLayout";
 import NotFound from "./pages/NotFound.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
+import {  useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getUser } from "./redux/actions/userActions.js";
 
 
 const App = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() =>{
+    dispatch(getUser())
+  }, [])
+
   return (
     <BrowserRouter>
       <RootLayout>
