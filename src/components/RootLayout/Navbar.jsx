@@ -10,16 +10,34 @@ import {
   Button,
   Tooltip,
   MenuItem,
-  MenuIcon,
-  AdbIcon,
+  Divider,
 } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import clientAxios from "../../utils/clientAxios";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Productos", "Contacto", "Carrito"];
+const settings = [
+  {
+    name: "Dashboard",
+    to: "/admin",
+  },
+  {
+    name: "Contacto",
+    to: "/contacto",
+  },
+  {
+    name: "Cerrar sesión",
+    to: () => {},
+  },
+];
 
 const Navbar = () => {
+  const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -38,11 +56,27 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
+  const handleLogoutUser = async () => {
+    await clientAxios
+      .get("/users/logout-user")
+      .then(() => {
+        navigate("/");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <AppBar position="sticky" sx={{ top: 0 }}>
+    <AppBar
+      position="fixed"
+      sx={{ top: 0, backgroundColor: "#ffffff50", backdropFilter: "blur(5px)"}}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -58,7 +92,7 @@ const Navbar = () => {
               textDecoration: "none",
             }}
           >
-            Boricua Vibes
+            BoricuaVibesMD
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -97,7 +131,7 @@ const Navbar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+
           <Typography
             variant="h5"
             noWrap
@@ -114,7 +148,7 @@ const Navbar = () => {
               textDecoration: "none",
             }}
           >
-            Boricua Vibes
+            BoricuaVibesXS
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -127,36 +161,64 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          {user ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting, index) => (
+                  <NavLink
+                    key={index}
+                    onClick={
+                      setting.name === "Cerrar sesión"
+                        ? handleLogoutUser
+                        : handleCloseUserMenu
+                    }
+                    to={setting.to}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Divider orientation="horizontal" flexItem />
+                    <MenuItem>
+                      <Typography
+                        className="text"
+                        textAlign="center"
+                        sx={{ marginLeft: 1, fontSize: 20 }}
+                      >
+                        {setting.name}
+                      </Typography>
+                    </MenuItem>
+                  </NavLink>
+                ))}
+              </Menu>
+            </Box>
+          ) : (
+            <Box>
+              <Button variant="outline">
+                <NavLink to="/login">Ingresar</NavLink>
+              </Button>
+              <Button variant="outline">
+               <NavLink to="/register">Registrarse</NavLink>
+             </Button>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

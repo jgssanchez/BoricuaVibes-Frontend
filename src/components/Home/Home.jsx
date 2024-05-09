@@ -1,9 +1,13 @@
 import { Container } from '@mui/material'
-
+import Banner from './Banner/Banner'
+import CardContainer from "./CardContainer"
 
 const Home = () => {
   return (
-    <Container sx={{height:"500px"}}>Home</Container>
+    <Container disableGutters maxWidth={false}>
+      <Banner/>
+      <CardContainer/>
+    </Container>
   )
 }
 

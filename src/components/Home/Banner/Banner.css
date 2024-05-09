@@ -1,0 +1,13 @@
+.title-banner{
+    color: white;
+    font-size: clamp(2.5rem, 10dvw ,8rem) !important;
+    font-weight: bolder !important;
+    text-shadow: -2px 2px 5px black;
+}
+
+.subtitle-banner{
+    color: white;
+    font-size: clamp(1rem, 5dvw , 5rem) !important;
+    font-style: italic;
+    text-shadow: -2px 2px 5px black;
+}

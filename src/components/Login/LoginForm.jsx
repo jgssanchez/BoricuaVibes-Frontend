@@ -14,6 +14,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { handleError } from "../../utils/handleInputError.js"
 import clientAxios from "../../utils/clientAxios.js";
+import {useDispatch} from "react-redux"
+import { getUser } from "../../redux/actions/userActions.js";
 
 const confIcon = {
   position: "absolute",
@@ -27,6 +29,7 @@ const strongEmailRegex =
 
 const LoginForm = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -45,8 +48,8 @@ const LoginForm = () => {
     await clientAxios
       .post(`/users/login-user`, { email, password })
       .then(() => {
-        alert("Bienvenido");
-        navigate("/");
+        navigate("/")
+        dispatch(getUser())
       })
       .catch((error) => {
         alert(error.message);
