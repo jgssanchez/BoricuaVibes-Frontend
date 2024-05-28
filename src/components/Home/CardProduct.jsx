@@ -1,3 +1,4 @@
+// CardProduct.js
 import React from 'react';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
@@ -8,12 +9,12 @@ import Button from '@mui/material/Button';
 
 const ProductCard = ({ image, title, description, price, onClick }) => {
   return (
-    <Card sx={{ m:3 }}>
+    <Card sx={{ m: 3 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image={image}
+          image={image || "https://via.placeholder.com/150"} // Placeholder image if image is not provided
           alt={title}
         />
         <CardContent>
@@ -24,7 +25,7 @@ const ProductCard = ({ image, title, description, price, onClick }) => {
             {description}
           </Typography>
           <Typography variant="h6" color="text.primary">
-            Price: {price}
+            Price: ${price}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -33,6 +34,6 @@ const ProductCard = ({ image, title, description, price, onClick }) => {
       </Button>
     </Card>
   );
-}
+};
 
 export default ProductCard;

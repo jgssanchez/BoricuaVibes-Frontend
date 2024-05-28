@@ -1,0 +1,53 @@
+.register {
+    background-color: #1d3557; /* Azul oscuro */
+    color: #f1faee; /* Blanco */
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .register-button {
+    background-color: #e63946; /* Rojo */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    margin-top: 16px;
+  }
+  
+  .register-button:hover {
+    background-color: #457b9d; /* Azul claro */
+  }
+  
+  .register-button:disabled {
+    background-color: #ddd;
+    color: #666;
+    cursor: not-allowed;
+  }
+  
+  .link-to {
+    color: #f1faee; /* Blanco */
+    margin-top: 10px;
+  }
+  
+  .link-to a {
+    color: #e63946; /* Rojo */
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .link-to a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 600px) {
+    .register {
+      padding: 16px;
+    }
+  }
+  

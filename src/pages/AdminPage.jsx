@@ -1,10 +1,13 @@
-import ProductCrud from "../components/AdminDasboard/products/ProductCrud.jsx"
+import AdminDashboard from "../components/AdminDashBoard/Products/AdminDashboard"
+
+
+
 
 const AdminPage = () => {
   return (
-    <>
-   <ProductCrud/>
-   </>
+    
+   <AdminDashboard/>
+
   )
 }
 

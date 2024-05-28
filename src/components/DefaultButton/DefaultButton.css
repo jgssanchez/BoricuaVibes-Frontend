@@ -1,0 +1,16 @@
+.default-button {
+    padding: 8px 16px;
+    background-color: #ffc139;
+    border-radius: 24px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    letter-spacing: .2rem;
+    font-weight: bolder !important;
+    transition: all ease-in-out .3s;
+  }
+  
+  .default-button:hover {
+    background-color: #333333;
+    color: #ffc139;
+  }

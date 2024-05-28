@@ -7,10 +7,12 @@ import RootLayout from "./components/RootLayout/RootLayout";
 import NotFound from "./pages/NotFound.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
-import AdminPage from "./pages/AdminPage.jsx";
+
 import {  useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUser } from "./redux/actions/userActions.js";
+import AdminPage from "./pages/AdminPage.jsx";
+import { getProducts } from "./redux/actions/productAction.js";
 
 
 
@@ -20,8 +22,9 @@ const App = () => {
 
   useEffect(() =>{
     dispatch(getUser())
+    dispatch(getProducts())
   }, [])
-
+  
   return (
     <BrowserRouter>
       <RootLayout>

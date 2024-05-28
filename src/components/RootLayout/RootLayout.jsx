@@ -1,6 +1,6 @@
 
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from './Navbar/Navbar'
+import Footer from './Footer/Footer'
 
 const RootLayout = ({children}) => {
   return (
