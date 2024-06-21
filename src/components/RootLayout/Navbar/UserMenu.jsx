@@ -4,7 +4,7 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useState } from "react";
 import CartDrawer from "../../CartDrawer/CartDrawer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../../redux/actions/userActions";
 import { useNavigate } from "react-router-dom";
 import { autoCloseAlert, customAlert } from "../../../utils/alerts";
@@ -12,6 +12,8 @@ import { autoCloseAlert, customAlert } from "../../../utils/alerts";
 const UserMenu = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { userCart } = useSelector((state) => state.cart);
+  const { userOrders } = useSelector((state) => state.order);
   const [openCart, setOpenCart] = useState(false);
 
   const handleLogoutUser = () => {
@@ -19,19 +21,18 @@ const UserMenu = () => {
       dispatch(logoutUser()).then(() => {
         autoCloseAlert("SESION CERRADA", "success");
         navigate("/");
-      })
+      });
     });
   };
-
 
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Badge
-          badgeContent={5}
+          badgeContent={userOrders.filter(order => order.status === "PENDIENTE").length}
           sx={{
             "& .MuiBadge-badge": {
-              backgroundColor: "#ffc139",
+              backgroundColor: "#0050f0",
               color: "white",
               transition: "all ease-in-out .3s",
               cursor: "default",
@@ -45,13 +46,13 @@ const UserMenu = () => {
         >
           <Tooltip title="Pedidos">
             <ShoppingBagOutlinedIcon
-              onClick={() => navigate("/orders")}
+              onClick={() => navigate("/user-orders")}
               sx={{
                 color: "#333333",
                 cursor: "pointer",
                 transition: "all ease-in-out .3s",
                 ":hover": {
-                  color: "#ffc139",
+                  color: "#0050f0",
                 },
               }}
             />
@@ -59,17 +60,17 @@ const UserMenu = () => {
         </Badge>
         <Divider orientation="vertical" flexItem sx={{ mx: 2 }} />
         <Badge
-          badgeContent={3}
+          badgeContent={userCart.length}
           sx={{
             "& .MuiBadge-badge": {
-              backgroundColor: "#ffc139",
+              backgroundColor: "#0050f0",
               color: "white",
               transition: "all ease-in-out .3s",
               cursor: "default",
             },
             ":hover": {
               "& .MuiBadge-badge": {
-                backgroundColor: "#333333",
+                backgroundColor: "#ed0000",
               },
             },
           }}
@@ -82,7 +83,7 @@ const UserMenu = () => {
                 cursor: "pointer",
                 transition: "all ease-in-out .3s",
                 ":hover": {
-                  color: "#ffc139",
+                  color: "#0050f0",
                 },
               }}
             />
@@ -97,7 +98,7 @@ const UserMenu = () => {
               cursor: "pointer",
               transition: "all ease-in-out .3s",
               ":hover": {
-                color: "#ffc139",
+                color: "#ed0000",
               },
             }}
           />

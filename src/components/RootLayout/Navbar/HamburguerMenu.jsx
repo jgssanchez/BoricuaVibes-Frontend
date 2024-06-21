@@ -1,6 +1,7 @@
-import { IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import { IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const HamburguerMenu = ({pages}) => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -25,7 +26,7 @@ const HamburguerMenu = ({pages}) => {
         <MenuIcon
           sx={{
             borderRadius: 1,
-            backgroundColor: "#ffc139",
+            backgroundColor: "#0050f0",
             color: "white",
             width: 40,
             height: 30,
@@ -50,9 +51,9 @@ const HamburguerMenu = ({pages}) => {
           display: { xs: "block", md: "none" },
         }}
       >
-        {pages.map((page) => (
-          <MenuItem key={page} onClick={handleCloseNavMenu}>
-            <Typography textAlign="center">{page}</Typography>
+        {pages.map((page, indexPage) => (
+          <MenuItem key={indexPage} onClick={handleCloseNavMenu}>
+            <Link to={page.path} style={{ textDecoration: "none", color: "#333333" }}>{page.name.toUpperCase()}</Link>
           </MenuItem>
         ))}
       </Menu>
