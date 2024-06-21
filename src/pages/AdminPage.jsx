@@ -1,14 +1,14 @@
-import AdminDashboard from "../components/AdminDashBoard/Products/AdminDashboard"
-
-
-
+import { Outlet } from "react-router-dom";
+import AdminDashboard from "../components/AdminDashboard/AdminDashboard";
+import { Container } from "@mui/material";
 
 const AdminPage = () => {
   return (
-    
-   <AdminDashboard/>
+    <Container disableGutters maxWidth={false} sx={{ minHeight: "500px"}}>
+      <AdminDashboard />
+      <Outlet/>
+    </Container>
+  );
+};
 
-  )
-}
-
-export default AdminPage
+export default AdminPage;
