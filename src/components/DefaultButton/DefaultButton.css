@@ -1,16 +1,39 @@
 .default-button {
-    padding: 8px 16px;
-    background-color: #ffc139;
-    border-radius: 24px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    letter-spacing: .2rem;
-    font-weight: bolder !important;
-    transition: all ease-in-out .3s;
-  }
-  
-  .default-button:hover {
-    background-color: #333333;
-    color: #ffc139;
-  }
+  padding: 8px 16px;
+  background-color: #ed0000;
+  border-radius: 24px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  letter-spacing: .2rem;
+  font-weight: bolder !important;
+  transition: all ease-in-out .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.default-button:hover {
+  background-color: #0050f0;
+  color: #ffff;
+}
+
+.default-button-reverse {
+  padding: 8px 16px;
+  background-color: #ed0000;
+  border-radius: 24px;
+  border: none;
+  color: #ffff;
+  cursor: pointer;
+  letter-spacing: .2rem;
+  font-weight: bolder !important;
+  transition: all ease-in-out .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.default-button-reverse:hover {
+  background-color: #0050f0;
+  color: white;
+}
