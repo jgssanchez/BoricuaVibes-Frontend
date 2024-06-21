@@ -18,6 +18,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { handleError } from "../../utils/handleInputError";
 import clientAxios from "../../utils/clientAxios";
+import { autoCloseAlert } from "../../utils/alerts";
 
 const strongPasswordRegex =
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
@@ -77,7 +78,7 @@ const RegisterForm = () => {
     try {
       await clientAxios
         .post(`/users/create`, { firstname, lastname, email, password })
-        .then((res) => alert(res.data.message));
+        .then((res) => autoCloseAlert("CUENTA CREADA CON EXITO", "success"))
       setFirstname("")
       setLastname("")
       setEmail("");
