@@ -1,45 +1,59 @@
-import React from 'react';
-import { Container, Box, Typography } from '@mui/material';
-import './Banner.css';
+import "./Banner.css";
+
+import { Container, Box, Typography } from "@mui/material";
+
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import logoBoricua from "../../../assets/images/logo1.jfif";
+import DefaultButton from "../../DefaultButton/DefaultButton";
 
 const Banner = () => {
-  const urlImg = "https://i.pinimg.com/564x/a2/13/65/a21365e934017b83bc731ad0ed51a900.jpg";
+  const { isAuthenticated } = useSelector((state) => state.user);
+  const navigate = useNavigate()
 
   return (
     <Container
       disableGutters
-      maxWidth={false}
-      className="banner-container"
+      maxWidth='xl'
       sx={{
-        backgroundImage: `url(${urlImg})`,
-        height: { xs: 300, sm: 600, md: 800, lg: 1000 },
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundImage: `url(${logoBoricua})`,
+        height: {xs: "100vh", xl: "60dvh"},
+        backgroundSize: "cover",
+        position: "relative",
       }}
     >
       <Box
         sx={{
           px: 3,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-          backdropFilter: 'blur(8px)',
-          background: 'rgba(0, 0, 0, 0.5)',
-          borderRadius: 8,
-          p: 3,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          height: "100%",
+          width: "100%",
+          background:
+            "linear-gradient(360deg, rgba(0,0,0,1) 0%, rgba(0,212,255,0) 150%)",
         }}
       >
         <Typography variant="h1" className="title-banner">
-          Boricua Vibes
+          BORICUA 
         </Typography>
-        <Typography variant="h3" className="subtitle-banner">
-          Tu lugar para disfrutar y comer a la vez...
+        <Typography variant="h2" className="subtitle-banner">
+          VIBES
         </Typography>
+        <Typography variant="h2" className="description-banner">
+          Sabores de PR a tu mesa
+        </Typography>
+        {/* <DefaultButton
+          styles={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, 200%)",
+          }}
+          buttonText="Comprar ahora"
+          onclick={isAuthenticated ? () => navigate("/categories") : () => navigate("/login")}
+        /> */}
       </Box>
     </Container>
   );

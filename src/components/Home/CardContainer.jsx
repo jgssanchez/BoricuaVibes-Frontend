@@ -1,5 +1,5 @@
-import { Grid, Typography } from "@mui/material";
-import ProductCard from "./CardProduct";
+import { Typography, Container} from "@mui/material";
+import ProductCard from "../ProductCard/ProductCard";
 import { useSelector } from "react-redux";
 
 const CardContainer = () => {
@@ -7,6 +7,7 @@ const CardContainer = () => {
 
   return (
     <>
+    <Container sx={{my:5}}>
       <Typography
         variant="h3"
         component="h2"
@@ -16,29 +17,13 @@ const CardContainer = () => {
       >
         Nuestro Menú
       </Typography>
-      <Grid container spacing={2} sx={{ width: "100%" }}>
-        {Array.isArray(products) && products.length > 0 ? (
-          products.map((producto) => (
-            <Grid item xs={12} sm={6} md={4} key={producto._id}>
-              <ProductCard
-                image={producto.image}
-                title={producto.name}
-                description={producto.description}
-                price={producto.price}
-                onClick={() => console.log(`${producto.name} added to cart`)}
-              />
-            </Grid>
-          ))
-        ) : (
-          <Typography
-            variant="body1"
-            component="p"
-            sx={{ textAlign: "center", width: "100%" }}
-          >
-            No hay productos disponibles.
-          </Typography>
-        )}
-      </Grid>
+      {products?.map((product, index) => (
+        <ProductCard
+          key={index}
+         product={product}
+        />
+      ))}
+    </Container>  
     </>
   );
 };

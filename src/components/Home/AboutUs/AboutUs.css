@@ -1,31 +1,37 @@
+.aboutUsContainer {
+  background-color: #000;
+  padding: 16px 32px;
+  color: #fff;
+}
 
-.container {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .imageContainer {
-    width: 50%;
-    padding: 16px;
-  }
-  
-  .image {
-    width: 600px;
-    height: auto;
-  }
-  
-  .contentContainer {
-    width: 50%;
-    padding: 16px;
-  }
-  
-  .title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 16px;
-  }
-  
-  .paragraph {
-    margin-bottom: 12px;
-  }
-  
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.aboutUsImage {
+  width: 80%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.contentContainer {
+  padding: 16px 32px;
+}
+
+.aboutUsTitle {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ff0000;
+  margin-bottom: 16px;
+}
+
+.aboutUsParagraph {
+  font-size: 1.2rem;
+  color: #fff;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
