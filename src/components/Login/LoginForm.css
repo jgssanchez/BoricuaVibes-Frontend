@@ -1,38 +1,12 @@
 .login {
-  background-color: #000;
+  background-color: #f2f2f2;
   padding: 32px;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
   animation: fadeIn 1s ease-in-out;
 }
 
-.login-button {
-  background-color: #ff0000;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  margin-top: 16px;
-  color: #fff;
-}
 
-.login-button:hover {
-  background-color: #0000ff;
-  color: #fff;
-}
-
-.link-to {
-  color: #fff;
-  margin-top: 16px;
-  text-align: center;
-}
-
-.link-to a {
-  color: #0000ff;
-}
 
 @keyframes fadeIn {
   0% {

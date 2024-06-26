@@ -1,5 +1,3 @@
-import "./RegisterForm.css";
-
 import {
   Avatar,
   CssBaseline,
@@ -19,6 +17,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { handleError } from "../../utils/handleInputError";
 import clientAxios from "../../utils/clientAxios";
 import { autoCloseAlert } from "../../utils/alerts";
+import Loader from "../Loader/Loader";
+
+import backgroundImage from "../../assets/images/login.jpg";
+import DefaultButton from "../DefaultButton/DefaultButton";
 
 const strongPasswordRegex =
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
@@ -34,6 +36,25 @@ const confIcon = {
   cursor: "pointer",
 };
 
+const colorsLabel={
+  "& .MuiInputBase-root": {
+    color: "gray",
+  },
+  "& .MuiInputLabel-root": {
+    color: "gray",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#0000ff",
+    },
+    "&:hover fieldset": {
+      borderColor: "#0000ff",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#ff0000",
+    },
+  },
+}
 const RegisterForm = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -68,26 +89,34 @@ const RegisterForm = () => {
     setLoading(true);
     e.preventDefault();
 
-    if (password !== confirmPassword) setConfirmPasswordError(true);
-
-    if (firstnameError || lastnameError || emailError || passwordError || confirmPasswordError) {
+    
+    if (
+      firstnameError || !firstname ||
+      lastnameError || !lastname ||
+      emailError || !email ||
+      passwordError || !password ||
+      confirmPasswordError
+    ) {
       setLoading(false);
-      return alert("Por favor, rellena bien el formulario");
+      return autoCloseAlert("Por favor, rellena bien el formulario", "error");
     }
+    
+    if (password !== confirmPassword) setLoading(false);
+    setConfirmPasswordError(true);
 
     try {
       await clientAxios
         .post(`/users/create`, { firstname, lastname, email, password })
-        .then((res) => autoCloseAlert("CUENTA CREADA CON EXITO", "success"))
-      setFirstname("")
-      setLastname("")
+        .then((res) => alert(res.data.message));
+      setFirstname("");
+      setLastname("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
       setTimeout(() => navigate("/"), 2000);
     } catch (error) {
       const errorMsg = error.errors?.[0]?.msg;
-      alert(errorMsg || "Ups, ocurrió un error");
+      autoCloseAlert(errorMsg || "Ups, ocurrió un error", "error");
     } finally {
       setLoading(false);
     }
@@ -95,31 +124,49 @@ const RegisterForm = () => {
 
   return (
     <>
+      {loading && <Loader />}
       <CssBaseline />
       <Container
-        maxWidth="sm"
+        maxWidth={false}
         sx={{
-          my: { xs: 12, sm: 2, md: 10 },
+          position: "relative",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "calc(100dvh - 85px - 65px)",
+          minHeight: '100dvh',
+          overflow: "hidden",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "blur(5px)",
+            zIndex: -1,
+          },
         }}
       >
         <Box
-          className="register"
+          maxWidth="sm"
           sx={{
+            p: 2,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            backgroundColor: "#f2f2f2",
+            borderRadius: 2,
+            color: "gray",
+            my: 2
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "success.main" }}>
-            <PersonAddIcon />
+          <Avatar sx={{ m: 1, bgcolor: "#0050f0" }}>
+            <PersonAddIcon sx={{ color: "#fff" }} />
           </Avatar>
-          <Typography className="link-to" variant="h5">
-            Registrarse
-          </Typography>
+          <Typography sx={{color:"#333333"}} variant="h5">Registrarse</Typography>
           <Box
             component="form"
             noValidate
@@ -133,8 +180,8 @@ const RegisterForm = () => {
                   fullWidth
                   id="nombre"
                   label="Nombre"
+                  autoComplete="name"
                   name="nombre"
-                  autoComplete="nombre"
                   onChange={(e) =>
                     handleError(
                       e,
@@ -147,6 +194,7 @@ const RegisterForm = () => {
                   error={firstnameError}
                   color={firstnameError ? "" : "success"}
                   helperText={firstnameError ? "Nombre inválido" : ""}
+                  sx={colorsLabel}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -156,7 +204,6 @@ const RegisterForm = () => {
                   id="lastname"
                   label="Apellido"
                   name="lastname"
-                  autoComplete="lastname"
                   onChange={(e) =>
                     handleError(e, setLastname, setLastnameError, lastnameRegex)
                   }
@@ -164,6 +211,7 @@ const RegisterForm = () => {
                   error={lastnameError}
                   color={lastnameError ? "" : "success"}
                   helperText={lastnameError ? "Apellido inválido" : ""}
+                  sx={colorsLabel}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -172,8 +220,8 @@ const RegisterForm = () => {
                   fullWidth
                   id="email"
                   label="Email"
-                  name="email"
                   autoComplete="email"
+                  name="email"
                   onChange={(e) =>
                     handleError(e, setEmail, setEmailError, strongEmailRegex)
                   }
@@ -181,6 +229,7 @@ const RegisterForm = () => {
                   error={emailError}
                   color={emailError ? "" : "success"}
                   helperText={emailError ? "Email inválido" : ""}
+                  sx={colorsLabel}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -189,6 +238,7 @@ const RegisterForm = () => {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     label="Contraseña*"
+                    autoComplete="current-password"
                     value={password}
                     error={passwordError}
                     color={passwordError ? "" : "success"}
@@ -205,6 +255,7 @@ const RegisterForm = () => {
                         strongPasswordRegex
                       )
                     }
+                    sx={colorsLabel}
                   />
                   {showPassword ? (
                     <VisibilityOff
@@ -224,6 +275,7 @@ const RegisterForm = () => {
                   <TextField
                     id="password2"
                     type={showConfirmPassword ? "text" : "password"}
+                    autoComplete="current-password"
                     label="Repetir Contraseña*"
                     value={confirmPassword}
                     error={confirmPasswordError}
@@ -232,11 +284,13 @@ const RegisterForm = () => {
                       confirmPasswordError ? "Las contraseñas no coinciden" : ""
                     }
                     onChange={(e) => handleErrorConfirmPassword(e)}
+                    sx={colorsLabel}
                   />
                   {showConfirmPassword ? (
                     <VisibilityOff
                       sx={confIcon}
                       onClick={handleClickShowConfirmPassword}
+                      
                     />
                   ) : (
                     <Visibility
@@ -246,12 +300,6 @@ const RegisterForm = () => {
                   )}
                 </FormControl>
               </Grid>
-              <Grid item xs={12}>
-                <Typography className="link-to">
-                  Al completar el registro, recibirás un correo electrónico con
-                  un link para activar tu cuenta.
-                </Typography>
-              </Grid>
             </Grid>
             <Box
               sx={{
@@ -259,19 +307,21 @@ const RegisterForm = () => {
                 justifyContent: "center",
               }}
             >
-              <button type="submit" className="register-button">
-                Registrarme
-              </button>
+              <DefaultButton
+                buttonText="Registrarse"
+                onclick={handleSubmit}
+                styles={{ margin: "1rem 0" }}
+              />
             </Box>
             <Box display="flex" justifyContent="flex-end">
-              <Typography className="link-to">
+              <Typography>
                 Ya tienes una cuenta?
                 <Link
                   to="/login"
                   style={{
                     textDecoration: "none",
-                    color: "rgb(255, 255, 0)",
-                    fontWeight: "bolder",
+                    color: "#0050f0",
+                    fontWeight: "bolder !important",
                     marginLeft: 10,
                   }}
                 >

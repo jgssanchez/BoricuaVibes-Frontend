@@ -16,7 +16,9 @@ import { handleError } from "../../utils/handleInputError.js";
 import { useDispatch } from "react-redux";
 import { getUser, loginUser } from "../../redux/actions/userActions.js";
 import { autoCloseAlert } from "../../utils/alerts.js";
-import "./LoginForm.css";
+
+import backgroundImage from "../../assets/images/login.jpg";
+import DefaultButton from "../DefaultButton/DefaultButton.jsx";
 
 const confIcon = {
   position: "absolute",
@@ -42,7 +44,10 @@ const LoginForm = () => {
     e.preventDefault();
 
     if (!email || !password || emailError)
-      return alert("Por favor, rellena el formulario correctamente");
+      return autoCloseAlert(
+        "Por favor, rellena el formulario correctamente",
+        "error"
+      );
 
     dispatch(loginUser({ email, password }))
       .unwrap()
@@ -60,27 +65,44 @@ const LoginForm = () => {
     <>
       <CssBaseline />
       <Container
-        maxWidth="sm"
+        maxWidth={false}
         sx={{
+          position: 'relative',
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "calc(100dvh - 85px - 65px)",
+          minHeight: "100vh",
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: 'blur(5px)',
+            zIndex: -1,
+          }
         }}
       >
-        <Box
-          className="login"
+        <Box  
           sx={{
-            paddingTop: 1,
+            p: 2,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            backgroundColor: "#f2f2f2",
+            borderRadius: 2,
+            color: "gray",
           }}
         >
-          <Avatar sx={{ m: 2, bgcolor: "primary.main" }}>
-            <LoginIcon />
+          <Avatar sx={{ m: 2, bgcolor: "#0050f0" }}>
+            <LoginIcon sx={{ color: "#fff" }} />
           </Avatar>
-          <Typography className="link-to" variant="h5">
+          <Typography sx={{color:"#333"}} variant="h5">
             Iniciar Sesión
           </Typography>
           <Box
@@ -101,16 +123,14 @@ const LoginForm = () => {
               }
               value={email}
               error={emailError}
+              color={emailError ? "" : "primary"}
               helperText={emailError ? "Email inválido" : ""}
               sx={{
                 "& .MuiInputBase-root": {
-                  color: "#fff",
+                  color: "gray",
                 },
                 "& .MuiInputLabel-root": {
-                  color: "#fff",
-                },
-                "& .MuiFormHelperText-root": {
-                  color: "#ff0000",
+                  color: "gray",
                 },
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
@@ -139,10 +159,10 @@ const LoginForm = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 sx={{
                   "& .MuiInputBase-root": {
-                    color: "#fff",
+                    color: "gray",
                   },
                   "& .MuiInputLabel-root": {
-                    color: "#fff",
+                    color: "gray",
                   },
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
@@ -172,23 +192,25 @@ const LoginForm = () => {
                 justifyContent: "center",
               }}
             >
-              <button className="login-button" type="submit">
-                Ingresar
-              </button>
+              <DefaultButton
+                buttonText="Iniciar Sesion"
+                onclick={handleSubmit}
+                styles={{ margin: "1rem 0" }}
+              />
             </Box>
             <Box>
-              <Typography className="link-to">
+              <Typography>
                 No tienes una cuenta?
                 <Link
                   to="/register"
                   style={{
                     textDecoration: "none",
-                    color: "#00f",
+                    color: "#0050f0",
                     fontWeight: "bolder",
                     marginLeft: 10,
                   }}
                 >
-                  Regístrate
+                  Regístrate aquí
                 </Link>
               </Typography>
             </Box>
