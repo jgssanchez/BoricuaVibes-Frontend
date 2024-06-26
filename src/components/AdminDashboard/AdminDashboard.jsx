@@ -38,7 +38,7 @@ const AdminDashboard = () => {
       disableGutters
       maxWidth="md"
       component={Paper}
-      sx={{ position: "sticky", top: {xs: 55, sm: 65, }, backgroundColor: "white", zIndex: 2 }}
+      sx={{ position: "sticky", top: {xs: 55, sm: 75, }, backgroundColor: "white", zIndex: 2 }}
     >
       <Tabs
         value={value}
