@@ -5,13 +5,11 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <Container
-      maxWidth={false}
-      sx={{ backgroundColor: "#23201E", color: "white" }}
-    >
+    <Container id="contact-section" maxWidth={false} sx={{ backgroundColor: "#fff" }}>
       <Grid
         container
         maxWidth="xl"
@@ -33,9 +31,9 @@ const Footer = () => {
                 height: 40,
               }}
             >
-              <MailOutlineIcon sx={{ fontSize: 30, color: "#ffc139" }} />
+              <MailOutlineIcon sx={{ fontSize: 30, color: "#0050f0" }} />
               <Typography sx={{ width: 140, color: "gray" }}>
-                restaurante@gmail.com
+                boricuavibes@gmail.com
               </Typography>
             </Box>
             <Box
@@ -47,9 +45,9 @@ const Footer = () => {
                 my: 2,
               }}
             >
-              <CallOutlinedIcon sx={{ fontSize: 30, color: "#ffc139" }} />
+              <CallOutlinedIcon sx={{ fontSize: 30, color: "#0050f0" }} />
               <Typography sx={{ width: 140, color: "gray" }}>
-                +543811111111
+                +543815424607
               </Typography>
             </Box>
             <Box
@@ -60,7 +58,7 @@ const Footer = () => {
                 height: 40,
               }}
             >
-              <LocationOnOutlinedIcon sx={{ fontSize: 30, color: "#ffc139" }} />
+              <LocationOnOutlinedIcon sx={{ fontSize: 30, color: "#0050f0" }} />
               <Typography sx={{ width: 140, color: "gray" }}>
                 308 Negra Arroyo Lane, Albuquerque
               </Typography>
@@ -73,7 +71,7 @@ const Footer = () => {
             variant="h4"
             sx={{ fontSize: { xs: 70, sm: 34 } }}
           >
-            Restaurante
+            Boricua Vibes
           </Typography>
           <Typography
             textAlign="center"
@@ -86,9 +84,18 @@ const Footer = () => {
             <i>Síguenos en</i>
           </Typography>
           <Box sx={{ display: "flex", justifyContent: "center", pt: 2 }}>
+            <a href="https://www.facebook.com" target="_blank">
             <FacebookIcon sx={{ color: "#3b5998", fontSize: 40 }} />
+            </a>
+            
+            
+            <a href="https://www.instagram.com" target="_blank">
             <InstagramIcon sx={{ color: "#F56040", fontSize: 40, mx: 2 }} />
+            </a>
+           
+            <a href="https://www.x.com" target="_blank">
             <TwitterIcon sx={{ color: "#1DA1F2", fontSize: 40 }} />
+            </a>
           </Box>
         </Grid>
         <Grid item xs={12} sm={4} sx={{ mt: { xs: 2, sm: 0 } }}>
@@ -96,13 +103,23 @@ const Footer = () => {
             Sobre Nosotros
           </Typography>
           <Box sx={{ width: 200, mx: "auto", my: 2 }}>
-            <Typography sx={{ height: 40, color: "gray" }}>Nosotros</Typography>
-            <Typography sx={{ height: 40, my: 2, color: "gray" }}>
-              Politicas de Privacidad
-            </Typography>
-            <Typography sx={{ height: 40, color: "gray" }}>
-              Terminos y Condiciones
-            </Typography>
+            <Link to="*" style={{textDecoration:"none"}}>
+              <Typography sx={{ height: 40, color: "gray" }}>
+                Nosotros
+              </Typography>
+            </Link>
+
+            <Link to="*" style={{textDecoration:"none"}}>
+              <Typography sx={{ height: 40, my: 2, color: "gray" }}>
+                Politicas de Privacidad
+              </Typography>
+            </Link>
+
+            <Link to="*" style={{textDecoration:"none"}}>
+              <Typography sx={{ height: 40, color: "gray" }}>
+                Terminos y Condiciones
+              </Typography>
+            </Link>
           </Box>
         </Grid>
       </Grid>

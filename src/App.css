@@ -1,3 +1,5 @@
+
+
 *{
     margin: 0;
     padding: 0;
@@ -7,9 +9,7 @@
     
 }
 
-body{
-    background-color: #0000 !important;
-}
+
 .custom-container, .alert-container{
     z-index: 999999;
 }
@@ -19,8 +19,9 @@ body{
 }
 
 .custom-confirm-button{
-    background-color: #ffc139;
-    color: #333333;
+  background-color: #0050f0;
+
+    color: #fff;
     padding: 8px 16px;
     border-radius: 24px;
     border: none;
@@ -30,8 +31,8 @@ body{
 }
 
 .custom-cancel-button{
-    background-color: #333333;
-    color: #ffc139;
+    background-color: #ed0000;
+    color: #fff;
     padding: 8px 16px;
     border-radius: 24px;
     border: none;
