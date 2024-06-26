@@ -1,59 +1,77 @@
-import "./Banner.css";
-
-import { Container, Box, Typography } from "@mui/material";
-
+import React from "react";
+import { Container, Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import logoBoricua from "../../../assets/images/logo1.jfif";
+import logoBoricua from "../../../assets/images/banner.jpeg";
 import DefaultButton from "../../DefaultButton/DefaultButton";
+import "./Banner.css";
 
 const Banner = () => {
   const { isAuthenticated } = useSelector((state) => state.user);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Container
       disableGutters
-      maxWidth='xl'
+      maxWidth="xl"
+      className="banner-container"
       sx={{
         backgroundImage: `url(${logoBoricua})`,
-        height: {xs: "100vh", xl: "60dvh"},
-        backgroundSize: "cover",
-        position: "relative",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
+      <Box className="banner-overlay" />
       <Box
+        className="banner-content"
         sx={{
-          px: 3,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          height: "100%",
-          width: "100%",
-          background:
-            "linear-gradient(360deg, rgba(0,0,0,1) 0%, rgba(0,212,255,0) 150%)",
+          paddingLeft: { xs: "5%", sm: "10%", md: "15%" },
+          paddingRight: { xs: "5%", sm: "10%", md: "15%" },
+          paddingY: "5%",
         }}
       >
-        <Typography variant="h1" className="title-banner">
-          BORICUA 
+        <Typography
+          variant="h1"
+          className="title-banner"
+          sx={{
+            fontSize: { xs: "3.5rem", sm: "5rem", md: "6rem", lg: "7rem" },
+          }}
+        >
+          BORICUA
         </Typography>
-        <Typography variant="h2" className="subtitle-banner">
+        <Typography
+          variant="h2"
+          className="subtitle-banner"
+          sx={{
+            fontSize: { xs: "3rem", sm: "4rem", md: "rem", lg: "6rem" },
+          }}
+        >
           VIBES
         </Typography>
-        <Typography variant="h2" className="description-banner">
-          Sabores de PR a tu mesa
-        </Typography>
-        {/* <DefaultButton
-          styles={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, 200%)",
+        <Typography
+          variant="body1"
+          className="description-banner"
+          sx={{
+            fontSize: { xs: "0.8rem", sm: "1rem", md: "1rem", lg: "1rem" },
+            maxWidth: { xs: "100%", md: "70%" },
           }}
-          buttonText="Comprar ahora"
-          onclick={isAuthenticated ? () => navigate("/categories") : () => navigate("/login")}
-        /> */}
+        >
+          Descubre la auténtica experiencia culinaria de Puerto Rico. Cada plato es una celebración de sabores que te transportará directamente a la isla del encanto.
+        </Typography>
+        <Box className="button-container">
+          <DefaultButton
+            styles={{
+              marginTop: "2rem",
+              alignSelf: "flex-start",
+            }}
+            buttonText={isMobile ? "Categorias" : "Explorar Categorias"}
+            onclick={
+              isAuthenticated ? () => navigate("/categories") : () => navigate("/login")
+            }
+          />
+        </Box>
       </Box>
     </Container>
   );

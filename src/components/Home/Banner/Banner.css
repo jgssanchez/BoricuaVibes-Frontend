@@ -1,54 +1,84 @@
-.title-banner{
-  color: #ed0000;
-  font-size: clamp(4rem, 10dvw ,8rem) !important;
-  font-weight: bolder !important;
-  text-shadow: -2px 2px 5px black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -150%);
-  animation: fadeIn 1s ease-in;
+.banner-container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
 }
 
-.subtitle-banner{
-  font-size: clamp(3rem, 2dvw , 4rem) !important;
-  font-style: italic;
-  text-shadow: -2px 2px 2px #0050f0
-   ;
-  text-align: center;
+.banner-overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -80%);
-  color: #ffff;
-  font-weight: bolder !important;
-  animation : fadeIn 1s ease-in-out;
-}
-
-.description-banner{
-  color: whitesmoke;
-  font-size: clamp(.8rem, 2dvw , 2rem) !important;
-  text-shadow: -3px 3px 2px #0050f0;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 70%);
+  top: 0;
+  left: 0;
   width: 100%;
-  animation: fadeIn 1s ease-in-out;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%);
+}
+
+.banner-content {
+  position: relative;
+  text-align: left;
+  color: white;
+  width: 100%;
+  z-index: 1;
+}
+
+.title-banner {
+  font-family: 'Playfair Display', serif;
+  color: #ed0000;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin: 0;
+  padding-top: 30px;
+  text-shadow: 5px 2px 5px rgba(0,0,0,0.5);
+  animation: slideInLeft 1s ease-out;
+}
+
+.subtitle-banner {
+  font-family: 'Lucida Console';
+  font-weight: 300;
+  color: #0050f0;
+  margin: 0.5rem 0 1rem 0;
+  padding: 5px;
+  text-shadow: 5px 2px 5px rgba(0, 0, 0, 0.5);
+  animation: slideInLeft 1s ease-out 0.3s;
+  animation-fill-mode: both;
+}
+
+.description-banner {
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 1rem 0;
+  padding: 0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  animation: fadeIn 1s ease-out 0.6s;
+  animation-fill-mode: both;
+}
+
+.button-container {
+  animation: fadeIn 1s ease-out 0.9s;
+  animation-fill-mode: both;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes slideInFromLeft {
-  0% { transform: translateX(-100%); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideInFromRight {
-  0% { transform: translateX(100%); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
