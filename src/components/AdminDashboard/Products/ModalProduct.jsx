@@ -28,7 +28,7 @@ import {
 } from "../../../redux/actions/productActions";
 import Loader from "../../Loader/Loader";
 
-const regexProd = /^[a-zA-Z0-9,. -]{4,50}$/;
+const regexProd = /^[a-zA-Z0-9,. -ñ]{4,50}$/;
 const regexDesc = /^[a-zA-Z0-9,. \u00C0-\u00FF-]{4,100}$/;
 const regexPrice = /^(?!0+$)[0-9]{2,6}$/;
 
@@ -138,7 +138,7 @@ const ModalProduct = ({
   };
 
   const handleEditProduct = async () => {
-    // setIsLoading(true);
+    setIsLoading(true);
 
     if (
       productNameError ||
