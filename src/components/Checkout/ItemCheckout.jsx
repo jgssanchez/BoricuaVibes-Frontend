@@ -21,7 +21,7 @@ const ItemCheckout = ({ product }) => {
         />
         <Box sx={{ flexGrow: 1}}>
           <Typography
-            sx={{ fontWeight: "bolder !important", color: "white" }}
+            sx={{ fontWeight: "bolder !important", color: "black" }}
           >
             {product.product.name}
           </Typography>
@@ -49,7 +49,7 @@ const ItemCheckout = ({ product }) => {
 
           <Typography
             variant="h6"
-            sx={{ color: "#ffc139", fontWeight: "bolder !important", textAlign: 'right' }}
+            sx={{ color: "#0050f0", fontWeight: "bolder !important", textAlign: 'right' }}
           >
             $ {product.product.price * product.quantity}
           </Typography>
@@ -58,7 +58,8 @@ const ItemCheckout = ({ product }) => {
       <Divider
         orientation="horizontal"
         variant="middle"
-        sx={{ backgroundColor: "#f2f2f2", width: 300 }}
+        color="#0050f0"
+        sx={{ width: 300 }}
       />
     </>
   );

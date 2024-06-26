@@ -8,7 +8,7 @@ const PurchaseSummary = ({ userCart }) => {
       xs={12}
       sm={6}
       sx={{
-        backgroundColor: "#333333",
+        backgroundColor: "#fff",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -20,7 +20,7 @@ const PurchaseSummary = ({ userCart }) => {
         sx={{
           mb: 4,
           fontWeight: "bolder !important",
-          color: "#ffc139",
+          color: "#ed0000",
         }}
       >
         Resumen de compra
@@ -33,7 +33,7 @@ const PurchaseSummary = ({ userCart }) => {
       <Box sx={{ width: 300, mr: 2 }}>
         <Typography
           variant="h6"
-          sx={{ textAlign: "right", color: "darkgray", mt: 2 }}
+          sx={{ textAlign: "right", color: "#333", mt: 2 }}
         >
           Subtotal: ${" "}
           {userCart.reduce(
@@ -41,12 +41,12 @@ const PurchaseSummary = ({ userCart }) => {
             0
           )}
         </Typography>
-        <Divider variant="inset" sx={{ backgroundColor: "darkgray", my: 1 }} />
+        <Divider variant="inset" sx={{ backgroundColor: "#0050f0", my: 1 }} />
 
-        <Typography variant="h6" sx={{ color: "darkgray", textAlign: "right" }}>
+        <Typography variant="h6" sx={{ color: "#ed0000", textAlign: "right" }}>
           Coste de envío : GRATIS
         </Typography>
-        <Divider variant="inset" sx={{ backgroundColor: "darkgray", my: 1 }} />
+        <Divider variant="inset" sx={{ backgroundColor: "#0050f0", my: 1 }} />
         <Typography
           variant="h4"
           sx={{
