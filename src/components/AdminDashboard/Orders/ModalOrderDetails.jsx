@@ -86,6 +86,7 @@ const ModalOrderDetails = ({ open, handleClose, order }) => {
         </Typography>
 
         {order.status === "PENDIENTE" && (
+          <Box>
             <Button
               variant="contained"
               color="success"
@@ -95,7 +96,7 @@ const ModalOrderDetails = ({ open, handleClose, order }) => {
             >
               Marcar como entregado
             </Button>
-          ) && (
+          
             <Button
               variant="contained"
               color="error"
@@ -105,7 +106,9 @@ const ModalOrderDetails = ({ open, handleClose, order }) => {
             >
               Cancelar pedido
             </Button>
+          </Box>
           )}
+
       </Box>
     </Modal>
   );

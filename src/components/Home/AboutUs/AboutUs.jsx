@@ -1,4 +1,3 @@
-import React from "react";
 import { Grid, Typography, Box } from "@mui/material";
 import logo1 from "../../../assets/images/aboutus.jpg";
 import "./AboutUs.css";
