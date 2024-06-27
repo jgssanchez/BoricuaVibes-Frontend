@@ -12,6 +12,7 @@ Autor: Julio Gerardo Sanchez
 - [Instalación](#instalación)
 - [Uso](#uso)
 - [Aclaración](#aclaración)
+- [Cuentas de Prueba](#cuentas-de-prueba)
 - [Contactos](#contactos)
 
 
@@ -58,6 +59,21 @@ Asegúrate de tener las siguientes dependencias de desarrollo instaladas en tu s
 
 - Este proyecto es una prueba de concepto. No es una solución real.
 - En las validaciones de compras, se utilizan datos falsos (13 o 16 digitos de tarjeta de crédito empezando con 4, simulando tarjeta Visa) y la fecha de expiración (MM/AA) debe ser mayor o igual al año 2024, hasta el año 2029.
+
+## 📄 Cuentas de Prueba
+
+# Cuenta de ADMINISTRADOR:
+- EMAIL: admin@admin.com
+- CONTRASEÑA: Admin123
+
+# Cuenta de TESTEO:
+- EMAIL: cuentausuario@mail.com
+- CONTRASEÑA: Usuario1
+
+# Cuenta BANNEADA:
+- EMAIL: cuentabanneada@mail.com
+- CONTRASEÑA: Banneada1
+
 
 ## 🔧 Instalación
 
