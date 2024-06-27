@@ -54,6 +54,11 @@ Asegúrate de tener las siguientes dependencias de desarrollo instaladas en tu s
 -   "eslint-plugin-react-refresh": "^0.4.6",
 -   "vite": "^5.2.0"
 
+## 📝 Aclaracion:
+
+- Este proyecto es una prueba de concepto. No es una solución real.
+- En las validaciones de compras, se utilizan datos falsos (13 o 16 digitos de tarjeta de crédito empezando con 4, simulando tarjeta Visa) y la fecha de expiración (MM/AA) debe ser mayor o igual al año 2024, hasta el año 2029.
+
 ## 🔧 Instalación
 
 Clona el repositorio de Boricua Vibes Frontend:
@@ -72,13 +77,10 @@ bash:
 
 npm run dev
 Visita http://localhost:5173/ en tu navegador para ver el proyecto en acción.
+```
 
-## 📝 Aclaracion:
 
-- Este proyecto es una prueba de concepto. No es una solución real.
-- En las validaciones de compras, se utilizan datos falsos (13 o 16 digitos de tarjeta de crédito empezando con 4, simulando tarjeta Visa) y la fecha de expiración (MM/AA) debe ser mayor o igual al año 2024, hasta el año 2029.
-
-📬 Contacto
+## 📬 Contacto
 
 Email: jgs.sanchez94@gmail.com
 Telefono: 3815424607
