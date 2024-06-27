@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const clientAxios = axios.create({
-    baseURL: "https://boricua-vibes-backend.vercel.app/",
+    baseURL: "https://boricua-vibes-backend.vercel.app",
     headers: {
         'Content-Type': 'application/json',
     },
