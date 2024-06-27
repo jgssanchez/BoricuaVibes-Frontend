@@ -1,4 +1,3 @@
-
 import { Box, Button, List, Modal, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -35,6 +34,16 @@ const ModalOrderDetails = ({ open, handleClose, order }) => {
           });
       }
     );
+  };
+  const handleOrder = () => {
+    customAlert("¿Marcar como entregado?", () => {
+      dispatch(editOrder({ id: order._id, status: "ENTREGADO" }))
+        .unwrap()
+        .then(() => {
+          autoCloseAlert("Se ha modificado el estado del pedido", "success");
+          handleClose();
+        });
+    });
   };
 
   return (
@@ -75,17 +84,28 @@ const ModalOrderDetails = ({ open, handleClose, order }) => {
         <Typography variant="subtitle1">
           CP: {order.userAddress.zipCode}
         </Typography>
+
         {order.status === "PENDIENTE" && (
-          <Button
-            variant="contained"
-            color="error"
-            sx={{ mt: 2 }}
-            fullWidth
-            onClick={handleCancelOrder}
-          >
-            Cancelar pedido
-          </Button>
-        )}
+            <Button
+              variant="contained"
+              color="success"
+              sx={{ mt: 2 }}
+              fullWidth
+              onClick={handleOrder}
+            >
+              Marcar como entregado
+            </Button>
+          ) && (
+            <Button
+              variant="contained"
+              color="error"
+              sx={{ mt: 2 }}
+              fullWidth
+              onClick={handleCancelOrder}
+            >
+              Cancelar pedido
+            </Button>
+          )}
       </Box>
     </Modal>
   );
