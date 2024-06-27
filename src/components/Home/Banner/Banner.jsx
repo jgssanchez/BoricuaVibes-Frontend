@@ -17,7 +17,7 @@ const Banner = () => {
       maxWidth="xl"
       className="banner-container"
       sx={{
-        backgroundImage: `url(${logoBoricua}) alt="banner principal"`,
+        backgroundImage: `url(${logoBoricua})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
