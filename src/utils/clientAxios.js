@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const clientAxios = axios.create({
-    baseURL: "https://boricuavibes-backend.onrender.com",
+    baseURL: "https://boricuavibes-backend.onrender.com/api",
     headers: {
         'Content-Type': 'application/json',
     },
