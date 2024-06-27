@@ -51,7 +51,7 @@ const PurchaseSummary = ({ userCart }) => {
           variant="h4"
           sx={{
             fontWeight: "bolder !important",
-            color: "white",
+            color: "#333",
             textAlign: "right",
           }}
         >
