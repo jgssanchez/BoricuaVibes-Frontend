@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {Routes, Route, HashRouter } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import RootLayout from "./components/RootLayout/RootLayout";
@@ -38,7 +38,7 @@ const App = () => {
   }, [isAuthenticated, dispatch]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <RootLayout>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -77,7 +77,7 @@ const App = () => {
           />
         </Routes>
       </RootLayout>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
