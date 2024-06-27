@@ -62,15 +62,15 @@ Asegúrate de tener las siguientes dependencias de desarrollo instaladas en tu s
 
 ## 📄 Cuentas de Prueba
 
-# Cuenta de ADMINISTRADOR:
+### Cuenta de ADMINISTRADOR:
 - EMAIL: admin@admin.com
 - CONTRASEÑA: Admin123
 
-# Cuenta de TESTEO:
+### Cuenta de TESTEO:
 - EMAIL: cuentausuario@mail.com
 - CONTRASEÑA: Usuario1
 
-# Cuenta BANNEADA:
+### Cuenta BANNEADA:
 - EMAIL: cuentabanneada@mail.com
 - CONTRASEÑA: Banneada1
 
@@ -98,8 +98,8 @@ Visita http://localhost:5173/ en tu navegador para ver el proyecto en acción.
 
 ## 📬 Contacto
 
-Email: jgs.sanchez94@gmail.com
-Telefono: 3815424607
+- Email: jgs.sanchez94@gmail.com
+- Telefono: 3815424607
 
 
 ¡Gracias por visitar Boricua Vibes! 🎉
