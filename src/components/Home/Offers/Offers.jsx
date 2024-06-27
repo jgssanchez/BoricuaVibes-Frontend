@@ -19,7 +19,7 @@ const Offerts = () => {
       }}
     >
       <Box sx={{ position: "relative" }}>
-        <Box component="img" src={offertLeft} sx={{ width: "100%" }} />
+        <Box component="img" src={offertLeft} sx={{ width: "100%" }} alt="ofertas"/>
         <Typography
           variant="h3"
           sx={{
@@ -60,7 +60,6 @@ const Offerts = () => {
             left: "50%",
             transform: "translate(-50%, 500%)",
             color: "#fff",
-            
             fontSize: { xs: "1.5rem", sm: "2rem", md: "1rem" },
             width: "100%",
             textAlign: "center",
@@ -70,7 +69,7 @@ const Offerts = () => {
         </Typography>
       </Box>
       <Box sx={{ position: "relative" }}>
-        <Box component="img" src={offertCenter} sx={{ width: "100%" }} />
+        <Box component="img" src={offertCenter} sx={{ width: "100%" }} alt="ofertas"/>
         <Typography
           variant="h3"
           sx={{
@@ -122,7 +121,7 @@ const Offerts = () => {
         </Typography>
       </Box>
       <Box sx={{ position: "relative" }}>
-        <Box component="img" src={offertRight} sx={{ width: "100%" }} />
+        <Box component="img" src={offertRight} sx={{ width: "100%" }} alt="ofertas"/>
         <Typography
           variant="h3"
           sx={{

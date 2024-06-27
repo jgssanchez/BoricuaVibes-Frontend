@@ -62,6 +62,7 @@ const ProductCard = ({ product }) => {
         <Box
           component="img"
           src={product.image}
+          alt="productos"
           sx={{ width: 200 , height: 150 , ":hover" : {transform: "scale(1.1)", opacity:0.5, transition:"all 0.3s ease-in-out" }}}
         />
       </Link>

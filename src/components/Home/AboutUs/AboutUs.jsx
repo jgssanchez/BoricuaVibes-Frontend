@@ -9,7 +9,7 @@ const AboutUs = () => {
         <Box
           component="img"
           src={logo1}
-          alt="Delicious Food"
+          alt="Nuestro local"
           className="aboutUsImage"
           height="80%"
         />
