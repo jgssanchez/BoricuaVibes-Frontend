@@ -39,6 +39,8 @@ const Navbar = () => {
   const location = useLocation()
   const { user, isAuthenticated, loading } = useSelector((state) => state.user);
 
+  
+
   const handleNavClick = (path) => {
     if (path.startsWith("#")) {
       const sectionId = path.substring(1);
@@ -63,15 +65,18 @@ const Navbar = () => {
     >
       <Container maxWidth="xl" sx={{ px: 1 }}>
         <Toolbar disableGutters>
-          <Box
-            component="img"
-            src={logoRestaurant}
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              width: 150,
-            }}
-          />
+        <Link to="/" style={{ textDecoration: 'none' }} >
+      <Box
+        component="img"
+        src={logoRestaurant}
+        sx={{
+          mr: 2,
+          display: { xs: "none", md: "flex" },
+          width: 150,
+          cursor: 'pointer' 
+        }}
+      />
+    </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <HamburguerMenu pages={pages} />
